@@ -79,4 +79,26 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// router.get('/comment', withAuth, async (req, res) => {
+//   try {
+//     const commentData = await Comment.findAll({
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['name'],
+//         },
+//       ],
+//     });
+
+//     const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+//     res.render('comment', {
+//       ...comments,
+//       logged_in: req.session.logged_in
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 module.exports = router;

@@ -1,5 +1,5 @@
 const { Model, DataTypes  } = require('sequelize');
-const sequelize = require('../db');
+const sequelize = require('../config/connection');
 
 class Comment extends Model {}
 Comment.init({
@@ -9,10 +9,28 @@ Comment.init({
         primaryKey: true,
         autoIncrement: true,
       },
+      
     body: {
         type: DataTypes.STRING,
         allowNull: false,
-}
-}, { sequelize, modelName: 'comment', timestamps: true});
+},
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+},
+post_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'post',
+          key: 'id'
+        }
+      },
+
+},
+ { sequelize, modelName: 'comment', timestamps: true});
 
 module.exports = Comment;
